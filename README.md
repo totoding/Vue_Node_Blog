@@ -14,7 +14,7 @@
 
 #### 进程记录  
 
-2020/11/8 创建仓库,项目初始化,配置开发环境.端vue2 vuex vueRouter axios sass, 服务端express cors sequelize mysql.
+2020/11/8 创建仓库,项目初始化,配置开发环境.端vue2 vuex vueRouter axios sass, 服务端express cors sequelize mysql.  
 2020/11/10 使用 sequelize建用户表 Header组件 注册功能 JWT登录认证.
 
 
