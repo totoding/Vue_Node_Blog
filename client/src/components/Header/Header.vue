@@ -12,10 +12,14 @@
                 </div>
                 <div class="left_navbar_content">
                     <ul>
-                        <li class="active">HOME</li>
+                        <!-- <li class="active">HOME</li>
                         <li>BLOG</li>
                         <li>PROJECT</li>
-                        <li>ABOUT</li>
+                        <li>ABOUT</li> -->
+                        <router-link to="/home" tag="li" class="active" >HOME</router-link>
+                        <router-link to="/blog" tag="li" >BLOG</router-link>
+                        <router-link to="#" tag="li" >PROJECT</router-link>
+                        <router-link to="/about" tag="li" >ABOUT</router-link>
                     </ul>
                 </div>
             </div>
