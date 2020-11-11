@@ -1,14 +1,6 @@
 require("./express")
 require("./models/db")
-// require("./models/User")
-const userServ =  require("./services/userService")
 
-
-// userServ.addUser({
-//     username : "admin",
-//     password : "Hny158405",
-//     type : 1
-// })
 
 const jwt = require("jsonwebtoken")
 const secrect = "totoding"
