@@ -1,7 +1,7 @@
 require("./express")
 require("./models/db")
 // require("./models/User")
-// const userServ =  require("./services/userService")
+const userServ =  require("./services/userService")
 
 
 // userServ.addUser({
