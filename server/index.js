@@ -1,5 +1,6 @@
 require("./express")
-require("./models/db")
+require("./init")
+// require("./models/db")
 
 
 const jwt = require("jsonwebtoken")
