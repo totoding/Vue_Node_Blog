@@ -18,7 +18,7 @@
                         <li>ABOUT</li> -->
                         <router-link to="/home" tag="li" class="active" >HOME</router-link>
                         <router-link to="/blog" tag="li" >BLOG</router-link>
-                        <router-link to="#" tag="li" >PROJECT</router-link>
+                        <router-link to="/archive" tag="li" >Archive</router-link>
                         <router-link to="/about" tag="li" >ABOUT</router-link>
                     </ul>
                 </div>
@@ -74,7 +74,10 @@ export default {
     },
 }
 </script>
+
 <style lang="scss" scoped>
+
+
 .header{
     height: 50px;
     widows: 100;
@@ -125,9 +128,15 @@ export default {
                         cursor: pointer;
                         font-weight: 600;
                         font-family: Consolas,"monospace","Microsoft Yahei";
+                        padding: 8px 2px;
+                        list-style: none;
+                        -moz-user-select: none; /*火狐*/
+                        -webkit-user-select: none; /*webkit浏览器*/
+                        user-select: none;
                     }
                     li.active{
                         color: blue;
+                       
                     }
                 }
             }

@@ -1,7 +1,8 @@
 <template>
-    <div class="default">
+    <div class="blog">
         <app-header/>
         <router-view></router-view>
+        <h1>1</h1>
     </div>
 </template>
 
@@ -13,9 +14,3 @@ export default {
     }
 }
 </script>
-<style scoped >
-    .default{
-        width: 100%;
-        height: 100%;
-    }
- </style>
