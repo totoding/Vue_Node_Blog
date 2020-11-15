@@ -15,13 +15,21 @@ exports.publish = function (res, maxAge = 3600*24, info = {}){
     res.header("authorization",token)
 }
 
-exports.verify = function (req){
-    let token 
-    req.cookies.token ? token = req.cookies[cookieKey] : token = req.headers.authorization
-    try {
-        return jwt.verify(token, secrect)
-    } catch (error) {
-        return null
+exports.verify = function (req) {
+    let token = req.headers.authorization;
+    console.log(token)
+    if (!token) {
+      //没有token
+      return null;
     }
-
-}
+    // authorization: bearer token
+    token = token.split(" ");
+    token = token.length === 1 ? token[0] : token[1];
+    try {
+      const result = jwt.verify(token, secrect);
+      return result;
+    } catch (err) {
+      return null;
+    }
+  };
+  

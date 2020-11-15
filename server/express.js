@@ -1,15 +1,15 @@
-const cookieParser = require('cookie-parser')
 const express = require('express')
 const app = express()
-const path = require('path')
+const path = require('path');
 const port = 3000
-const cookieParser = require("cookie-parser")
-app.use(cookieParser())
-app.use('./routes/tokenMiddleware.js')
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+
 app.use(require('./routes/corsMiddleware'))
+app.use(require("./routes/tokenMiddleware"))
+app.use("/api/whoami",require("./routes/api/who"))
 app.use("/api/register",require("./routes/api/register"))
 app.use("/api/login",require("./routes/api/login"))
 

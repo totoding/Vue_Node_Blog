@@ -18,6 +18,7 @@
     "md5": "^2.3.0",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.6",
+    "path-to-regexp": "^6.2.0",
     "sequelize": "^6.3.5",
     "validate.js": "^0.13.1"
   }

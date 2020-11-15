@@ -42,3 +42,12 @@ exports.login = async function (userInfo) {
     })
     return result ? result.toJSON() : null
 }
+
+exports.getUserById = async function(userId){
+    const result = await User.findOne({
+        where : {
+           id: userId,
+        }
+    })
+    return result ? result.toJSON() : null
+}

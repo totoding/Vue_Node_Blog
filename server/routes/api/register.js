@@ -3,15 +3,13 @@ const router = express.Router()
 const userServ = require("../../services/userService")
 const { asyncHandler } = require("../getSendResult")
 
-router.post('/', asyncHandler(async (req, res) => {
-    console.log(23)
-    const isRepeat = await userServ.checkUser(req.query.username)
+router.post('/',asyncHandler(async (req, res) => {
+    const isRepeat = await userServ.checkUser(req.body.username)
     if (isRepeat) {
-        const result = await userServ.addUser(req.query)
-        res.send(result)
+        return  await userServ.addUser(req.body)
     } else {
-        res.send("重复了")
+        return ""
     }
-}))
+})) 
 
 module.exports = router
