@@ -9,9 +9,7 @@ router.post("/", asyncHandler(async (req, res) => {
     if (result) {
         jwt.publish(res, undefined, { id: result.id })
     }
-    return {
-        name: result.username
-    }
+    return result
 }))
 
 module.exports = router
