@@ -13,3 +13,11 @@ export async function whoAmI(){
     const resp =  await request().get("/api/whoami")
     return resp.data
 }
+
+export async function register(username, password){
+    const resp = await request().post("/api/register",{
+        username,
+        password
+    })
+    return resp.data
+}

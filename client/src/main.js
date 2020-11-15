@@ -6,7 +6,7 @@ import axios from "axios"
 // import "./assets/css/reset.css"
 import { Icon } from 'element-ui';
 
-store.dispatch("user/whoAmI")
+// store.dispatch("user/whoAmI")
 
 Vue.config.productionTip = false
 Vue.prototype.axios = axios

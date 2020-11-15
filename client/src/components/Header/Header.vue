@@ -12,65 +12,99 @@
                 </div>
                 <div class="left_navbar_content">
                     <ul>
-                        <!-- <li class="active">HOME</li>
-                        <li>BLOG</li>
-                        <li>PROJECT</li>
-                        <li>ABOUT</li> -->
-                        <router-link to="/home" tag="li" class="active" >HOME</router-link>
-                        <router-link to="/blog" tag="li" >BLOG</router-link>
-                        <router-link to="/archive" tag="li" >Archive</router-link>
-                        <router-link to="/about" tag="li" >ABOUT</router-link>
+                        <router-link to="/home" tag="li" class="active" >主页</router-link>
+                        <router-link to="/blog" tag="li" >博客</router-link>
+                        <router-link to="/archive" tag="li" >归档</router-link>
+                        <router-link to="/about" tag="li" >关于</router-link>
                     </ul>
                 </div>
             </div>
             <div class="right_info">
-                <div class="login">
-                    <div class="signin login_item">
+                <div class="login" v-show="!isLogin">
+                    <div class="signin login_item" @click="showLogin('login')">
                         登录
                     </div>
-                    <div class="signup login_item">
+                    <div class="signup login_item" @click="showLogin('register')" >
                         注册
                     </div>
                 </div>
-                <div class="userInfo" v-show="isLogin">
-
+                <div class="login" v-show="isLogin">
+                     <div class="signin login_item">
+                       {{username}}
+                    </div>
+                    <div class="signup login_item" @click="logout" >
+                      注销
+                    </div>
                 </div>
                
+            </div>
+        </div>
+        <div class="login_container" v-if="logining" @click="close">
+            <div class="box">
+                <Login @logined="logined" v-if="pathToLogin"/>
+                <Register @goLogin="goLogin" v-else />
             </div>
         </div>
     </header>
 </template>
 <script>
+import Login from './Login';
+import Register from './Register';
 export default {
+    components:{
+        Login,
+        Register
+    },
     data(){
         return {
             isLogin : false,
-            screenWidth: document.body.clientWidth
+            logining : false,
+            pathToLogin : false,
+            username : ""
         }
     },
-    mounted() {
-        const _this = this
-        window.onresize = () => {
-            return (() => {
-                window.screenWidth = document.body.clientWidth
-                _this.screenWidth = window.screenWidth
-            })()
-        }
-    },
-    watch: {
-        screenWidth(val){
-              if(!this.timer){
-                // 一旦监听到的screenWidth值改变，就将其重新赋给data里的screenWidth
-                this.screenWidth = val
-                this.timer = true
-                let _this = this
-                setTimeout(function(){
-                    // 打印screenWidth变化的值
-                    console.log(_this.screenWidth)
-                    _this.timer = false
-                },400)
+    methods: {
+        showLogin(event){
+            this.logining = true
+            event == "login" ? this.pathToLogin = true : this.pathToLogin = false            
+          
+        },
+        goLogin(data){
+            data ?  this.pathToLogin = true : this.logining = false   
+        },
+        logined(data){
+            this.username = data
+            console.log(this.$store.state.user.data)
+            this.logining = false
+            this.isLogin = true
+        },
+        logout(){
+            this.$store.dispatch("user/logout")
+        },
+        close(e){
+            if(e.target.className == "login_container"){
+                this.logining = false
+            }
+        },
+        async getUser(){
+            await this.$store.dispatch("user/whoAmI")
+            try {
+                const who = this.$store.state.user.data.username
+                this.isLogin = true
+                this.username = who
+                console.log(who)
+            } catch (error) {
+                console.log(error)
             }
         }
+    },
+    created() {
+        this.getUser()
+       
+    },
+  
+       
+    watch: {
     },
 }
 </script>
@@ -133,6 +167,8 @@ export default {
                         -moz-user-select: none; /*火狐*/
                         -webkit-user-select: none; /*webkit浏览器*/
                         user-select: none;
+                        width: 40px;
+
                     }
                     li.active{
                         color: blue;
@@ -165,6 +201,23 @@ export default {
                 }
             }
 
+        }
+    }
+    .login_container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right:  0;
+        bottom: 0;
+        background: rgba(141, 140, 140, 0.6);
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .box{
+            width: 380px;
+            height: 380px;
+            // background: #fff;
         }
     }
 }

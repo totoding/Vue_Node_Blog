@@ -15,9 +15,9 @@ export default {
     },
   },
   actions: {
-    async login({ commit }, { loginId, loginPwd }) {
+    async login({ commit }, { username, password }) {
       commit("setIsLoading", true);
-      const resp = await loginServ.login(loginId, loginPwd);
+      const resp = await loginServ.login(username, password);
       commit("setData", resp.data);
       commit("setIsLoading", false);
       return resp.data;
