@@ -17,8 +17,19 @@ export default {
     components:{
         BlogNav,
         BlogContent
-    }
+    },
+     data(){
+        return {
+            clientHeight : "",
+          
+        }
+    },
+    mounted() {
+        this.clientHeight = document.documentElement.clientHeight
+        console.log((this.clientHeight - 51)*0.86)
+    },
 }
+
 </script>
 <style lang="scss" scoped>
     .blog{
@@ -30,21 +41,17 @@ export default {
             height: 100%;
             display: flex;
             align-items: center;
-            // justify-content: space-between;
             .article_nav{
                 max-width: 400px;
                 width: 30%;
                 height: 86%;
-                // background: chocolate;
                 box-sizing: border-box;
             }
             .article_content{
                 width: 65%;
                 height: 86%;
-           
                 margin-left: 5%;
             }
         }
-
     }
 </style>

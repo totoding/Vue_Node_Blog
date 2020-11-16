@@ -6,7 +6,15 @@
 
 <script>
 export default {
-    
+    data(){
+        return {
+            clientHeight : "",
+        }
+    },
+    mounted() {
+        this.clientHeight = document.documentElement.clientHeight
+        // console.log((this.clientHeight - 51)*0.86)
+    },
 }
 </script>
 <style lang="scss" scoped>

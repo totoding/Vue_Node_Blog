@@ -12,7 +12,7 @@
                 </div>
                 <div class="left_navbar_content">
                     <ul>
-                        <router-link to="/home" tag="li" class="active" >主页</router-link>
+                        <router-link to="/home" tag="li"  >主页</router-link>
                         <router-link to="/blog" tag="li" >博客</router-link>
                         <router-link to="/archive" tag="li" >归档</router-link>
                         <router-link to="/about" tag="li" >关于</router-link>
