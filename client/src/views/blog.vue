@@ -5,16 +5,18 @@
                 <BlogNav/>
             </div>
             <div class="article_content">
-
+                <BlogContent/>
             </div>
         </div>
     </div>
 </template>
 <script>
 import BlogNav from '@/components/Blog/BlogNav.vue';
+import BlogContent from '@/components/Blog/BlogContent.vue';
 export default {
     components:{
         BlogNav,
+        BlogContent
     }
 }
 </script>
@@ -39,7 +41,7 @@ export default {
             .article_content{
                 width: 65%;
                 height: 86%;
-                background: chocolate;
+           
                 margin-left: 5%;
             }
         }

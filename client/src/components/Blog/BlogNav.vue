@@ -7,7 +7,7 @@
             <div class="nav_list_item">
                 <div class="list_item_container">
                     <div class="article_title article_common">@ blog的首次模板撒旦金卡沙发上法啊啊士大夫立刻就撒旦反；拉萨的咖啡机阿迪斯阿三地方了；啊螺丝钉咖啡碱；阿斯兰的看法就S撒阿斯兰的看法就S撒</div>
-                    <div class="article_tags article_common"> tags: html</div>
+                    <div class="article_tags article_common"> 标签: html</div>
                     <div class="article_time article_common">2020.11.13</div>
                 </div>
             </div>
@@ -96,7 +96,7 @@ export default {
         height: 100%;
         border: 3px solid black;
         box-sizing: border-box;
-        border-radius: 10px ;
+        border-radius: 5px ;
         position: relative;      
         .blog_nav_title{
             height: 40px;
