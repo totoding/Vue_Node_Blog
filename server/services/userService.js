@@ -4,7 +4,6 @@ const validate = require("validate.js")
 const { async } = require("validate.js")
 const { password } = require("../models/config")
 exports.addUser = async function (userInfo) {
-    console.log(userInfo)
     const rule = {
         // 验证规则
         username: {
