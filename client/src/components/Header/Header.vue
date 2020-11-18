@@ -82,9 +82,9 @@ export default {
             this.$store.dispatch("user/logout")
         },
         close(e){
-            if(e.target.className == "login_container"){
-                this.logining = false
-            }
+            // if(e.target.className == "login_container"){
+            //     this.logining = false
+            // }
         },
         async getUser(){
             await this.$store.dispatch("user/whoAmI")
@@ -99,7 +99,7 @@ export default {
         }
     },
     created() {
-        // this.getUser()
+        this.getUser()
        
     },
   

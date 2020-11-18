@@ -34,12 +34,14 @@ exports.checkUser = async function (userName) {
 }
 exports.login = async function (userInfo) {
     let pwd = md5(userInfo.password)
+    console.log(userInfo)
     const result = await User.findOne({
         where: {
             username: userInfo.username,
             password: pwd
         }
     })
+    console.log(result)
     return result ? result.toJSON() : null
 }
 

@@ -2,6 +2,7 @@ const { async } = require("validate.js")
 const Article = require("../models/Article")
 
 exports.addArticle = async function (article){
+    article.views = 0
     const ins = await Article.create(article)
     return ins.toJSON()
 }

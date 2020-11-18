@@ -28,13 +28,18 @@ const routes = [{
         name: "about",
         component: () => import("@/views/about.vue")
       },
-      {
-        path: "admin",
-        name: "admin",
-        component: () => import("@/views/admin.vue")
-      }
     ]
   },
+  {
+    path:"/admin",
+    name: "admin",
+    component:() =>import("@/views/admin.vue")
+  },
+  {
+    path:"/admin1",
+    name: "admin1",
+    component:() =>import("@/views/admin1.vue")
+  }
 
 ]
 

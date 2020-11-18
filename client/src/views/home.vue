@@ -11,11 +11,16 @@
 </template>
 <script>
 import * as loginServ from "@/service/loginService"
+import * as articleServe  from '@/service/articleServe';
 export default {
     methods: {
             
     },
     created() {
+        articleServe.getArticleList()
+        .then(res=>{
+            console.log(res)
+        })
         // loginServ.login("admin","Hny158405")
         //     .then(res=>{
         //         console.log(res)

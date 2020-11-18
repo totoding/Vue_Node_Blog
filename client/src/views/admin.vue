@@ -1,5 +1,8 @@
 <template>
     <div class="admin">
+    
+
+
         <div class="title center">
             <input type="text" placeholder="文章标题" v-model="title">
         </div>
@@ -29,6 +32,7 @@
 <script>
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
+import * as articleServe  from '@/service/articleServe';
 export default {
     name: "editor",
    
@@ -73,9 +77,14 @@ export default {
                 title : this.title,
                 tags : JSON.stringify(this.tagList),
                 content : this.content,
-                author : this.$store.state.user.username
+                author :this.$store.state.user.data.username
             }
-            console.log(data)
+            articleServe.addArticle(data)
+            .then(res=>{
+                if(res){
+                    alert("添加陈工")
+                }
+            })
         }
 
     },
