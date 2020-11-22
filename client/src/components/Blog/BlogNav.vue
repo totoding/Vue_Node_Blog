@@ -4,37 +4,24 @@
             <span class="nav_container">文章列表</span>
         </div>
         <div class="blog_nav_list">
-            <div class="nav_list_item" v-for="(item,index) in mockList" :key="index" >
-                <div class="list_item_container" :class="active==item?'active':''" @click="showArticle(item)">
-                    <div class="article_title article_common">@ blog的首次模板撒旦金卡沙发上法啊啊士大夫立刻就撒旦反；拉萨的咖啡机阿迪斯阿三地方了；啊螺丝钉咖啡碱；阿斯兰的看法就S撒阿斯兰的看法就S撒</div>
+            <div class="nav_list_item" v-for="item in titleList" :key="item.id" >
+                <div class="list_item_container" :class="active==item.id?'active':''" @click="showArticle(item.id)">
+                    <div class="article_title article_common">@ {{item.title}}</div>
                     <div class="article_tags article_common">
                          <div class="tag_title">
                              标签:
                          </div>
                          <div class="tag_container">
-                             <div class="tag_item">
-                                   html
-                             </div>
-                               <div class="tag_item">
-                                   vue
-                             </div>
-                               <div class="tag_item">
-                                   javascript
+                             <div class="tag_item" v-for="(ele, index) in item.tags" :key="index">
+                                  {{ele}}
                              </div>
                          </div>    
                     </div>
                     <div class="article_time article_common">
-                        2020-11-13 12 : 32
+                       {{item.createdAt}}
                     </div>
                 </div>
             </div>
-             <div class="nav_list_item">
-                <div class="list_item_container">
-                    <div class="article_title article_common">@ blog的首次模板撒旦金卡沙发</div>
-                    <div class="article_tags article_common"> 标签: html</div>
-                    <div class="article_time article_common">2020.11.13</div>
-                </div>
-            </div> 
         </div>
         <div class="blog_nav_footer">
             <div class="left_prev footer_item" >上一页</div>
@@ -47,17 +34,40 @@
 </template>
 
 <script>
+import * as articleServ from '@/service/articleServe';
 export default {
      data(){
         return {
-            mockList : [1,2,3,4,5,6],
+            titleList : [],
             active : 1
         }
     },
     methods: {
         showArticle(id){
             this.active = id
+            // console.log(id)
+            this.$store.dispatch("article/getArticleById",id)
+        },
+        async getTitleList(){
+            const list =  await articleServ.getArticleList()
+            this.titleList =  list.data.map(ele => {
+                return {
+                    id : ele.id,
+                    tags : ele.tags.includes("[") ? JSON.parse(ele.tags) : ele.tags.split(" "),
+                    title : ele.title,
+                    createdAt : ele.createdAt
+                }
+            })
+            this.titleList.reverse()
+            this.active = this.titleList[0].id
+            this.$store.dispatch("article/getArticleById",this.active) 
         }
+    },
+    created() {
+        
+        this.getTitleList()
+  
+
     },
 
 }

@@ -13,6 +13,7 @@
 <script>
 import BlogNav from '@/components/Blog/BlogNav.vue';
 import BlogContent from '@/components/Blog/BlogContent.vue';
+
 export default {
     components:{
         BlogNav,
@@ -20,13 +21,12 @@ export default {
     },
      data(){
         return {
-            clientHeight : "",
+      
           
         }
     },
     mounted() {
-        this.clientHeight = document.documentElement.clientHeight
-        console.log((this.clientHeight - 51)*0.86)
+    
     },
 }
 

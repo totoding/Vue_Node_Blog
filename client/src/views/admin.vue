@@ -77,7 +77,7 @@ export default {
                 title : this.title,
                 tags : JSON.stringify(this.tagList),
                 content : this.content,
-                author :this.$store.state.user.data.username
+                author : "totoding"
             }
             articleServe.addArticle(data)
             .then(res=>{

@@ -1,20 +1,49 @@
 <template >
     <div class="blog_content">
-        123
+        
+          
+        <div id="editor" style="">
+            <div class="content" v-html="currentArticle">
+            {{currentArticle}}
+        </div>
+
+       
+        </div>
     </div>
 </template>
 
 <script>
+import { mavonEditor } from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
+
 export default {
+      components: {
+        mavonEditor,
+    },
     data(){
         return {
-            clientHeight : "",
+           content : ""
         }
     },
-    mounted() {
-        this.clientHeight = document.documentElement.clientHeight
-        // console.log((this.clientHeight - 51)*0.86)
+    methods: {
+            save(val,html){
+            this.content = html
+        },
     },
+    computed: {
+        currentArticle(){
+            return this.$store.state.article.currentArticle
+        }
+    },
+    watch: {
+        articleId(){
+            console.log(this.articleId)
+        }
+    },
+    created() {
+        console.log( this.$store.state.article.currentArticle)
+    },
+ 
 }
 </script>
 <style lang="scss" scoped>
@@ -24,5 +53,11 @@ export default {
         height: 100%;
         border: 2px solid black;
         border-radius: 5px;
+        overflow-y: scroll;
+      
+    }
+    .content{
+        padding: 20px;
+        
     }
 </style>

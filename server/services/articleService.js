@@ -29,7 +29,7 @@ exports.getArticleTitle = async function(){
     const includes = ['title', 'id']
     const result = await Article.findAll(
         {
-            attributes: ['title', 'id']
+            attributes: ['title', 'id',"tags", "createdAt"]
         }
     )
     console.log(result)
