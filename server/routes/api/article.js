@@ -12,11 +12,12 @@ router.get("/:id",asyncHandler(async(req,res)=>{
     return await articleServ.getArticleById(req.params.id)
 }))
 router.get("/", asyncHandler(async(req, res)=>{
-    return await articleServ.getArticleTitle()
+    const query = req.query
+    return  query ? await articleServ.getArticleTitle() : await articleServ.getArticleTitleByFilter(query)
 }))
 
 router.delete("/:id", asyncHandler(async(req,res)=>{
-    console.log(req.params.id)
+
     return await articleServ.removeArticle(req.params.id)
 }))
 module.exports = router 
