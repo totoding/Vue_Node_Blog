@@ -1,6 +1,7 @@
 const { async, result } = require("validate.js")
 const { findAll } = require("../models/Article")
 const Article = require("../models/Article")
+const { Op } = require("sequelize")
 
 exports.addArticle = async function (article){
     article.views = 0
@@ -32,22 +33,28 @@ exports.getArticleTitle = async function(){
             attributes: ['title', 'id',"tags", "createdAt"]
         }
     )
-    console.log(result)
     return result 
 }
 exports.getArticleTitleByFilter = async function(fileter){
     if(fileter.type == "byTag"){
         const result = await Article.findAll({
-            // where : {
-            //     tags : fileter.value
-            // }
+            attributes: ['title', 'id',"tags", "createdAt"],
+            where : {
+                tags : {
+                    [Op.like]: '%' + fileter.value+ "%", 
+                }
+            }
         })
+        console.log(result)
         return result
     }else{
         const result = await Article.findAll({
-            // where : {
-            //     tags : fileter.value
-            // }
+            attributes: ['title', 'id',"tags", "createdAt"],
+            where : {
+                title : {
+                    [Op.like]: '%' + fileter.value+ "%", 
+                }
+            }
         })
         return result
     }

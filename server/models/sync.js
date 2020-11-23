@@ -1,4 +1,4 @@
-// require("./Article")
+// require("./Comments.js")
 
 // const sequelize = require('./db')
 // async function sync(){

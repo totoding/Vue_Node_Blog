@@ -13,7 +13,7 @@ router.get("/:id",asyncHandler(async(req,res)=>{
 }))
 router.get("/", asyncHandler(async(req, res)=>{
     const query = req.query
-    return  query ? await articleServ.getArticleTitle() : await articleServ.getArticleTitleByFilter(query)
+    return  query ? await articleServ.getArticleTitleByFilter(query) : await articleServ.getArticleTitle() 
 }))
 
 router.delete("/:id", asyncHandler(async(req,res)=>{
