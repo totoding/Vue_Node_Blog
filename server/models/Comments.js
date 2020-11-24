@@ -9,7 +9,7 @@ const Comments = sequelize.define("Comments",{
         type : DataTypes.INTEGER(11),
     },
     nickName : {
-        type : DataTypes.INTEGER(11),    
+        type : DataTypes.STRING(255),    
     },
     content : {
         type : DataTypes.STRING(255),
