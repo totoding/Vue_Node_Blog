@@ -1,13 +1,28 @@
 <template >
     <div class="blog_nav">
         <div class="blog_nav_title">
-            <span class="nav_container">文章列表</span>
+            <div class="time">
+                19 ：24
+            </div>
+            <div class="right">
+                <div class="signal">
+                    <svg t="1606219235660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5504" width="20" height="20"><path d="M144 768v64H64v-64h80m64-64H0v192h208V704zM416 576v256h-80V576h80m64-64H272v384h208V512zM688 352v480h-80V352h80m64-64H544v608h208V288zM960 192v640h-80V192h80m64-64H816v768h208V128z" p-id="5505"></path></svg>
+                </div>
+               <div class="berry">
+               <svg t="1606219361543" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7079" width="20" height="20"><path d="M812.8 767.9v167.8c0 13.3-10.7 24-24 24h-552c-13.3 0-24-10.7-24-24V767.9h600z" fill="#F0FAF5" p-id="7080"></path><path d="M624 94.5l48 71.4c10 15 26.8 23.9 44.8 23.9h66.1v740.7h-540V189.8h64.3c18 0 34.8-8.9 44.8-23.9l48-71.4h224m3.2-30H396.7c-8 0-15.5 4-19.9 10.6l-49.7 74c-4.5 6.6-11.9 10.6-19.9 10.6h-70.3c-13.3 0-24 10.8-24 24v752.7c0 13.3 10.7 24 24 24h552c13.3 0 24-10.8 24-24V183.8c0-13.3-10.7-24-24-24h-72.1c-8 0-15.5-4-19.9-10.6l-49.7-74c-4.6-6.7-12-10.7-20-10.7z" fill="" p-id="7081"></path><path d="M713.8 859.1h-402c-13.3 0-24-10.7-24-24v-54c0-13.3 10.7-24 24-24h402c13.3 0 24 10.7 24 24v54c0 13.3-10.7 24-24 24zM713.8 715.5h-402c-13.3 0-24-10.7-24-24v-54c0-13.3 10.7-24 24-24h402c13.3 0 24 10.7 24 24v54c0 13.2-10.7 24-24 24zM713.8 571.8h-402c-13.3 0-24-10.7-24-24v-54c0-13.3 10.7-24 24-24h402c13.3 0 24 10.7 24 24v54c0 13.2-10.7 24-24 24zM729.4 383.9c-8 0-14.5-6.5-14.5-14.5v-71.1c0-8 6.5-14.5 14.5-14.5s14.5 6.5 14.5 14.5v71.1c-0.1 8-6.5 14.5-14.5 14.5z" fill="#6DE49D" p-id="7082"></path></svg>
+               </div>
+       
+
+            </div>
+              
+                  
+            
         </div>
         <div class="blog_nav_list">
             <div class="nav_list_item" v-for="item in titleList" :key="item.id" >
                 <div class="list_item_container" :class="active==item.id?'active':''" @click="showArticle(item.id)">
                     <div class="article_title article_common">@ {{item.title}}</div>
-                    <div class="article_tags article_common">
+                    <!-- <div class="article_tags article_common">
                          <div class="tag_title">
                              标签:
                          </div>
@@ -16,19 +31,28 @@
                                   {{ele}}
                              </div>
                          </div>    
-                    </div>
+                    </div> -->
                     <div class="article_time article_common">
-                       {{item.createdAt}}
+                        <div class="left_time">
+                              {{item.createdAt}}
+                        </div>
+                        <!-- <div class="right_tags">
+                              <div class="tag_container">
+                             <div class="tag_item" v-for="(ele, index) in item.tags" :key="index">
+                                  {{ele}}
+                             </div>
+                         </div>    
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
         <div class="blog_nav_footer">
-            <div class="left_prev footer_item" >上一页</div>
+            <div class="left_prev footer_item" ></div>
             <div class="middle_num footer_item">
-                <input type="number" value="1" class="page_num">
+                <input type="number" value="" class="page_num">
             </div>
-            <div class="right_next footer_item">下一页</div>
+            <div class="right_next footer_item"></div>
         </div>
     </div>
 </template>
@@ -51,11 +75,12 @@ export default {
         async getTitleList(){
             const list =  await articleServ.getArticleList()
             this.titleList =  list.data.map(ele => {
+                ele.time = ele.createdAt.split("T")[0]
                 return {
                     id : ele.id,
                     tags : ele.tags.includes("[") ? JSON.parse(ele.tags) : ele.tags.split(" "),
                     title : ele.title,
-                    createdAt : ele.createdAt
+                    createdAt : ele.time
                 }
             })
             this.titleList.reverse()
@@ -98,15 +123,16 @@ export default {
         .blog_nav_title{
             height: 40px;
             width: 100%;
-            border-bottom: 3px solid black ;
             line-height: 40px;
-            font-weight: 600;
-            font-size: 16px;
+            font-size: 12px;
             box-sizing: border-box;
-            .nav_container{
-                display: block;
-                width: 96%;
-                margin: 0 auto;
+            padding: 0 5px;
+            display: flex;
+            border-bottom:3px solid black ;
+            justify-content: space-between;
+            font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+            .right{
+                display : flex
             }
         }
         .blog_nav_list{
@@ -116,19 +142,24 @@ export default {
             .nav_list_item{
                 width: 96%;
                 margin: 0 auto;
-                height: 90px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-             
                 .list_item_container{
                     width: 100%;
-                    height: 90%;
-                    border: 1px solid ;
+                    padding: 10px 0;
+                    border-radius: 20px;
                     cursor: pointer;
+                    margin: 5px;
+               
                     &.active{
-                        background: seagreen;
+                        background: #FFD03F;
+                        // border: 3px solid  #a2dbb9;
+                        //  color:#67ad83 ;
+                    }
+                    &:hover{
+                       
                     }
                     .article_common{
                         margin: 5px;
@@ -137,38 +168,48 @@ export default {
                         width: 100%;
                     }
                     .article_title{
-                        height: 30%;  
+                     
                         overflow: hidden;
                         text-overflow: ellipsis;
                         display: -webkit-box;
-                        -webkit-line-clamp: 1;
+                        -webkit-line-clamp: 2;
                         -webkit-box-orient: vertical;
-                        font-weight: bold;
-                        font-size: 15px;
-                        color: #1a1a1a;
+                        font-weight: bolder;
+                        font-size: 16px;
+                        // color: #1a1a1a;
                         letter-spacing: .8px;
+                        width: 96%;
+                        margin: 5px auto;
+                        font-family: "PingFang SC","Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
                     }
                     .article_tags{
-                        height: 26%;
                         font-size: 14px;
                         display: flex;
-                        .tag_container{
+                       
+                    }
+                    .article_time{
+                        font-size: 13px;
+                        color : rgba(0,0,0,.4);
+                        display: flex;
+                        justify-content: space-between;
+                        margin-left:8px ;
+                        .right_tags{
+                            margin-right:30px ;
+                            .tag_container{
                             display: flex;
                             .tag_item{
                                 margin: 0 5px;
-                                border: 1px solid;
+                                // border: 1px solid;
                                 font-size: 12px;
                                 padding: 0 10px;
-                                border-radius: 20px;
+                                // border-radius: 20px;
                                 text-align: center;
-                                // color: ;
+                                color: #000;
+                                font-weight: 500;
+                                color: #92fabc;
                             }
                         }
-                    }
-                    .article_time{
-                        font-size: 12px;
-                        color : rgba(0,0,0,.4);
-                        
+                        }
                     }
                 }
             }
@@ -192,6 +233,7 @@ export default {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
                 .page_num{
                     width: 30px;
                     height: 30px;
@@ -200,6 +242,7 @@ export default {
                     border-radius:50% ;
                     text-align: center;
                     font-weight: 600;
+                        margin: 10px;
                 }
             }
         }

@@ -9,11 +9,15 @@ router.post("/", asyncHandler(async(req,res)=>{
 }))
 
 router.get("/:id",asyncHandler(async(req,res)=>{
-    return await articleServ.getArticleById(req.params.id)
+    if(req.params){
+        return await articleServ.getArticleById(req.params.id)
+    }
 }))
 router.get("/", asyncHandler(async(req, res)=>{
+  
     const query = req.query
-    return  query ? await articleServ.getArticleTitleByFilter(query) : await articleServ.getArticleTitle() 
+    console.log(query)
+    return  query.type ? await articleServ.getArticleTitleByFilter(query) : await articleServ.getArticleTitle() 
 }))
 
 router.delete("/:id", asyncHandler(async(req,res)=>{

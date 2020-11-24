@@ -12,10 +12,10 @@
                 </div>
                 <div class="left_navbar_content">
                     <ul>
-                        <router-link to="/home" tag="li"  >主页</router-link>
-                        <router-link to="/blog" tag="li" >博客</router-link>
-                        <router-link to="/archive" tag="li" >归档</router-link>
-                        <router-link to="/about" tag="li" >关于</router-link>
+                        <router-link to="/home" tag="li"  >Home</router-link>
+                        <router-link to="/blog" tag="li" >Blog</router-link>
+                        <router-link to="/comments" tag="li" >Comments</router-link>
+                        <router-link to="/about" tag="li" >About</router-link>
                     </ul>
                 </div>
             </div>
@@ -154,7 +154,7 @@ export default {
                 }
             }
             .left_navbar_content{
-                margin-left:2% ;
+                margin-left:1% ;
                 ul{
                     display: flex;
                     li {
@@ -167,7 +167,8 @@ export default {
                         -moz-user-select: none; /*火狐*/
                         -webkit-user-select: none; /*webkit浏览器*/
                         user-select: none;
-                        width: 40px;
+                        font-size: 20px;
+                        // width: 0px;
 
                     }
                     li.active{
