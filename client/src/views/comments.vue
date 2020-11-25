@@ -16,14 +16,23 @@
             </div>
             <div class="comments_container">
                 <div class="total">
-                    全部留言
+                    全部留言（20）
+                </div>
+                <div class="comments_item" v-for="item in comments_list" :key="index">
+                    1
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-export default {};
+export default {
+    data(){
+        return {
+            comments_list : [1,2,3,4,5]
+        }
+    }
+}
 </script>
 <style lang="scss" scoped>
 .comments {
@@ -58,7 +67,6 @@ export default {};
             width: 620px;
             margin-top: 40px;
             padding: 10px;
-     
             margin-left:25px ;
             .top_title{
                 display: flex;
@@ -78,6 +86,12 @@ export default {};
                     border-bottom: 2px solid #3BB4F2;
                 }
             }
+        }
+        .comments_container{
+            width: 600px;
+           .total{
+               color: #3BB4F2;
+           }
         }
     }
 }
