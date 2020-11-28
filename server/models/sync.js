@@ -1,8 +1,8 @@
-// require("./Comments.js")
+// const Comments =  require("./Comments.js")
 
 // const sequelize = require('./db')
 // async function sync(){
-//     await sequelize.sync({ force: true });
+//     await Comments.sync({ alter: true });
 //     console.log("所有模型均已成功同步.");
 // }
 // sync()

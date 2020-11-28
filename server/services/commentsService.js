@@ -5,6 +5,7 @@ exports.addComments = async function (payload){
     payload.nickName ? payload : payload.nickName = "游客"
     payload.blogId ? payload : payload.blogId = 0
     payload.parentId ? payload : payload.parentId = 0
+    payload.commentId? payload : payload.commentId = 0
     const ins = await Comments.create(payload)
     return ins.toJSON()
 }
@@ -20,9 +21,10 @@ exports.getCommentByBlogId = async function (id){
 
 exports.getCommentNormalAll = async function (){
     const result = await Comments.findAll({
-        attributes:['id',"parentId","nickName","content","createdAt"],
+        attributes:['id',"parentId","commentId","nickName","content","createdAt"],
         where : {
-            blogId : 0 
+            blogId : 0 ,
+
         }
     })
     return result

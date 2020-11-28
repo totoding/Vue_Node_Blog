@@ -14,6 +14,9 @@ const Comments = sequelize.define("Comments",{
     content : {
         type : DataTypes.STRING(255),
     },
+    commentId : {
+        type : DataTypes.INTEGER(11),
+    },
 },
 {
     createdAt : true,
