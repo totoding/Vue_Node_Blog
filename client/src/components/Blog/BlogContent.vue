@@ -61,7 +61,7 @@ export default {
         box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
         width: 100%;
         height: 100%;
-        border: 3px solid black;
+        border: 3px solid #3BB4F2;
         border-radius: 5px;
         overflow-y: scroll;
         

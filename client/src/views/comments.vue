@@ -32,18 +32,18 @@
                             {{item.content}}
                     </div>
                     <div class="reply_bar">
-                        <!-- <div class="nice">
-                            <svg t="1606530155273" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1922" width="20" height="20"><path d="M588.346091 563.555233h235.338436c71.624742 0 127.901324 56.276583 127.901325 127.901324v20.464212l-30.696318 204.642119c-10.232106 61.392636-61.392636 107.437112-127.901324 107.437112h-204.642119C516.721349 1024 460.444767 967.723417 460.444767 896.098676v-204.642119c0-71.624742 56.276583-127.901324 127.901324-127.901324z" fill="#5AC8FA" p-id="1923"></path><path d="M209.758172 972.83947v-414.40029H102.321059c-30.696318 0-51.16053 25.580265-51.160529 51.16053V921.678941c0 30.696318 25.580265 51.16053 51.160529 51.160529h107.437113z m51.160529 0h588.346091c25.580265 0 46.044477-20.464212 51.16053-40.928423l71.624741-414.400291v-10.232105c0-30.696318-25.580265-51.16053-51.160529-51.16053h-276.26686c-56.276583 0-102.321059-46.044477-102.32106-102.321059v-204.642119c0-40.928424-25.580265-71.624742-66.508688-81.856847l-51.16053-15.348159-86.9729 424.632396c-10.232106 40.928424-35.812371 71.624742-76.740795 81.856847V972.83947z m-51.160529-465.560819h25.580264c25.580265 0 46.044477-15.348159 51.16053-40.928424L373.471866 41.717831c5.116053-25.580265 30.696318-46.044477 56.276583-40.928424l51.16053 10.232106c61.392636 15.348159 102.321059 71.624742 102.321059 133.017377v204.642119c0 30.696318 25.580265 51.16053 51.16053 51.160529H920.889534c56.276583 0 102.321059 46.044477 102.321059 102.32106v15.348158l-71.624741 414.400291c-10.232106 51.16053-51.16053 86.9729-102.32106 86.9729H102.321059c-56.276583 0-102.321059-46.044477-102.321059-102.321059v-312.079231c0-56.276583 46.044477-102.321059 102.321059-102.321059h107.437113z" fill="" p-id="1924"></path></svg>
-                            0 人赞
-                        </div> -->
-                        <div class="reply_btn" @click="replayMian(item.id)">
+                        <div class="reply_btn" @click="showInput(item.id)">
                             <span class="reply">回复</span>
                             <i class="el-icon-edit-outline"></i> 
                         </div>
                     </div>
-                    <div class="reply_content">
-                        <Replay/>
+                    <div class="reply_input" v-if="inputTarget==item.id">
+                        <ReplyInput :parentId="item.id" @handleSubmit="handleSubmit" :replyName="item.nickName" :type="1"/>
                     </div>
+                    <div class="reply_content"  v-for="ele in item.children" :key="ele.id">
+                        <Replay ref="reply"  :content="ele.content" :id="ele.id" :nickName="ele.nickName" :commentName="item.name" :time="ele.createdAt" :parentId="ele.parentId" :replyName="ele.replyNickName" :inputSwitch="inputSwitch" @closeAll="closeAll" @handleSubmit="handleSubmit"/>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -52,49 +52,89 @@
 <script>
 import * as commentsServe from '@/service/commentsServe';
 import Replay from "@/components/Comments/Reply.vue"
+import ReplyInput from "@/components/Comments/Input.vue"
 
 export default {
     components:{
-        Replay
+        Replay,
+        ReplyInput
     },
     data(){
         return {
             comments_list : [],
             newCommentContent : "",
-            total : 0
+            total : 0,
+            inputTarget : 0,
+            inputSwitch : false      
         }
     },
     methods: {
-        async replayMian(id){
-            console.log(id)
+        showInput(id){
+            this.closeAll()
+            this.inputTarget == id ? this.inputTarget = 0 : this.inputTarget = id   
         },
         async initComments(){
             const result = await commentsServe.getComments()
-            console.log(result.data)
-            const initList = []
-            result.data.forEach(ele => {
-                if(ele.parentId == 0){
-                   initList.push(ele) 
-                }
-            })
-            this.comments_list = initList
-            this.total = initList.length
+            const treeData = this.arrToTree(result.data, "id", "parentId", "children" )
+            treeData.reverse()
+            this.comments_list = treeData
+            this.total = treeData.length
         },
         async newComment(){
             const data = {
                 content : this.newCommentContent,
-                nickName : this.$store.state.user.data.username,
+                nickName : this.$store.state.user.data ? this.$store.state.user.data.username : "" ,
             }
             const result = await commentsServe.addComments(data)
             if(result.data){
                 this.newCommentContent = ""
                 alert("添加成功")
                 this.initComments()
+                this.closeAll()
             }
+        },
+        async handleSubmit(data){
+            const result = await commentsServe.addComments(data) 
+            if(result.data){
+                this.newCommentContent = ""
+                alert("添加成功")
+                this.initComments()
+                this.closeAll()
+            }
+        },
+        closeAll(id){
+            this.inputTarget = 0
+            this.$refs.reply.forEach(ele=>{
+                ele.close()
+            })
+        },
+        arrToTree(data, id, parentId, children) {
+            let arr = JSON.parse(JSON.stringify(data))
+            const listChildren = (obj, filter) => {
+                [arr, obj[children]] = arr.reduce((res, val) => {
+                    if (filter(val))
+                        res[1].push(val)
+                    else
+                        res[0].push(val)
+                    return res
+                }, [
+                    [],
+                    []
+                ])
+                obj[children].forEach(val => {
+                    if (arr.length){
+                        listChildren(val, obj => obj[parentId] === val[id])
+                    }      
+                })
+            }
+            const tree = {}
+            listChildren(tree, val => arr.findIndex(i => i[id] === val[parentId]) === -1)
+            return tree[children]
         }
     },
     created() {
         this.initComments()
+
     },
 }
 </script>
@@ -199,6 +239,13 @@ export default {
                     margin-right:5px ;
                     color : #A0A0B8
                 }
+            }
+            .reply_input{
+                width: 90%;
+                // border-left: 2px solid black;
+                margin-left:10% ;
+                box-sizing: border-box;
+                padding: 5px;
             }
             .reply_content{
                 width: 90%;

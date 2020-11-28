@@ -1,26 +1,72 @@
 <template>
     <div class="replay_item">
         <div class="item_comments">
-            <span class="item_username">神人灰太狼:</span>
-            <span class="item_orginal_name">@totoding</span>
-            <span class="item_content">你好啊兄嘚？</span>
+            <span class="item_username">{{nickName}}:</span>
+            <span class="item_orginal_name"><span v-show="replyName">@</span>{{replyName}}</span>
+            <span class="item_content">{{content}}</span>
         </div>
         <div class="item_info">
             <div class="item_info_time">
-                2020-05-23
+                {{time}}
             </div>
-            <div class="replay_icon">
+            <div class="reply_icon" @click="showInput()">
                 <span class="reply">回复</span>
                 <i class="el-icon-edit-outline"></i> 
             </div>
         </div>
+        <div class="reply" v-if="inputSwitch" >
+            <ReplyInput :parentId="parentId" :replyName="nickName" :commentId="id" @handleSubmit="handleSubmit"/>
+        </div>
     </div>
 </template>
 <script>
+import ReplyInput from "@/components/Comments/Input.vue"
 export default {
-    props:{},
+    props:{
+        id:{
+            type : Number,
+            default : 0
+        },
+        parentId :{
+            type : Number,
+            default : 0
+        },
+        nickName : {
+            type : String,
+            default : ""
+        },
+        time : {
+            type : String,
+            default : ""
+        },
+        replyName : {
+            type : String,
+            default : ""
+        },
+        content:{
+            type : String,
+            default : "" 
+        },
+    },
+    components:{
+        ReplyInput
+    },
     data(){
-        return {}
+        return {
+            inputSwitch : false
+        }
+    },
+    methods: {
+        showInput(){
+            this.$emit("closeAll", this.id)
+            this.inputSwitch  = !this.inputSwitch
+        },
+        close(){
+             this.inputSwitch = false
+        },
+        handleSubmit(data){
+            this.$emit("handleSubmit", data)
+        }
     },
 }
 </script>
@@ -44,7 +90,7 @@ export default {
     .item_info{
         display: flex;
         color : #A0A0B8;
-        .replay_icon{
+        .reply_icon{
             margin-left: 10px;
             cursor: pointer;
         }

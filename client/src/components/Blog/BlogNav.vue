@@ -116,7 +116,7 @@ export default {
         user-select: none;
         width: 100%;
         height: 100%;
-        border: 3px solid black;
+        border: 3px solid #3BB4F2;
         box-sizing: border-box;
         border-radius: 5px ;
         position: relative;      
@@ -128,7 +128,7 @@ export default {
             box-sizing: border-box;
             padding: 0 5px;
             display: flex;
-            border-bottom:3px solid black ;
+            border-bottom:3px solid #3BB4F2 ;
             justify-content: space-between;
             font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
             .right{
@@ -155,8 +155,6 @@ export default {
                
                     &.active{
                         background: #FFD03F;
-                        // border: 3px solid  #a2dbb9;
-                        //  color:#67ad83 ;
                     }
                     &:hover{
                        
@@ -176,7 +174,6 @@ export default {
                         -webkit-box-orient: vertical;
                         font-weight: bolder;
                         font-size: 16px;
-                        // color: #1a1a1a;
                         letter-spacing: .8px;
                         width: 96%;
                         margin: 5px auto;
@@ -218,7 +215,7 @@ export default {
         .blog_nav_footer{
             box-sizing: border-box;
             height: 40px;
-            border-top:3px solid black;
+            border-top:3px solid #3BB4F2;
             display: flex;
             justify-content: space-between;
             line-height: 40px;
