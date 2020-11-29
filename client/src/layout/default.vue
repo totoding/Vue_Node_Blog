@@ -7,7 +7,6 @@
 
 <script>
 import appHeader from '@/components/Header/Header.vue';
-
 export default {
     components :{
         appHeader
@@ -19,4 +18,4 @@ export default {
         width: 100%;
         height: 100%;
     }
- </style>
+</style>

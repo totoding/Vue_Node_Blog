@@ -36,11 +36,11 @@ export default {
     },
     watch: {
         articleId(){
-            console.log(this.articleId)
+            // console.log(this.articleId)
         }
     },
     created() {
-        console.log( this.$store.state.article.currentArticle)
+        // console.log( this.$store.state.article.currentArticle)
     },
  
 }

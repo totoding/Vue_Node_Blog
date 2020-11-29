@@ -15,3 +15,10 @@ export async function getArticleById(id){
     const resp = await request().get("/api/article/" + id)
     return resp.data
 }
+
+export async function getArticleListByFilter(params){
+    const resp = await request().get("/api/article",{
+        params,
+    })
+    return resp.data
+}

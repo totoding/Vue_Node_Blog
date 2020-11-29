@@ -39,8 +39,6 @@ export default {
                     }
                 })
             }
-            console.log(this.username)
-            console.log(this.password)
         },
         checkInfo(){
             if(!this.username){

@@ -36,7 +36,7 @@ exports.getArticleTitle = async function(){
     return result 
 }
 exports.getArticleTitleByFilter = async function(fileter){
-    if(fileter.type == "byTag"){
+    if(fileter.type == "tag"){
         const result = await Article.findAll({
             attributes: ['title', 'id',"tags", "createdAt"],
             where : {

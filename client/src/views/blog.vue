@@ -13,20 +13,20 @@
 <script>
 import BlogNav from '@/components/Blog/BlogNav.vue';
 import BlogContent from '@/components/Blog/BlogContent.vue';
-
 export default {
     components:{
         BlogNav,
         BlogContent
     },
      data(){
-        return {
-      
-          
+        return {  
         }
     },
-    mounted() {
-    
+    created() {
+        this.$store.dispatch("search/change", true)
+    },
+    destroyed() {
+        this.$store.dispatch("search/change", false)
     },
 }
 

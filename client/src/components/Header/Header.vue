@@ -1,22 +1,28 @@
 <template>
     <header class="header">
         <div class="container">
-            <div class="mini_nav">
-                三
+            <div class="logo">
+                Mr.Z 个人博客
             </div>
-            <div class="logo">LOGO</div>
             <div class="left_navbar">
-                <div class="left_navbar_searchbar">
-                    <input class="search" type="text" placeholder="Search or jump to...">
-                    <i class="el-icon-search"></i>
-                </div>
                 <div class="left_navbar_content">
                     <ul>
-                        <router-link to="/home" tag="li"  >Home</router-link>
-                        <router-link to="/blog" tag="li" >Blog</router-link>
-                        <router-link to="/comments" tag="li" >Comments</router-link>
-                        <router-link to="/about" tag="li" >About</router-link>
+                        <router-link to="/home" tag="li" >  
+                            <i class="el-icon-s-home"></i>
+                        首页</router-link>
+                        <router-link to="/blog" tag="li" >
+                            <i class="el-icon-reading"></i>
+                        博客</router-link>
+                        <router-link to="/comments" tag="li" >
+                         <i class="el-icon-edit-outline"></i>
+                        留言</router-link>
+                        <router-link to="/about" tag="li" >
+                        <i class="el-icon-user"></i>
+                        关于我</router-link>
                     </ul>
+                </div>
+                  <div class="left_navbar_searchbar" v-if="$store.state.search.showSearchBar">
+                      <Search/>
                 </div>
             </div>
             <div class="right_info">
@@ -50,17 +56,20 @@
 <script>
 import Login from './Login';
 import Register from './Register';
+import Search from './Search';
 export default {
     components:{
         Login,
-        Register
+        Register,
+        Search
     },
     data(){
         return {
             isLogin : false,
             logining : false,
             pathToLogin : false,
-            username : ""
+            username : "",
+
         }
     },
     methods: {
@@ -74,7 +83,6 @@ export default {
         },
         logined(data){
             this.username = data
-            console.log(this.$store.state.user.data)
             this.logining = false
             this.isLogin = true
         },
@@ -82,9 +90,7 @@ export default {
             this.$store.dispatch("user/logout")
         },
         close(e){
-            // if(e.target.className == "login_container"){
-            //     this.logining = false
-            // }
+  
         },
         async getUser(){
             await this.$store.dispatch("user/whoAmI")
@@ -92,7 +98,7 @@ export default {
                 const who = this.$store.state.user.data.username
                 this.isLogin = true
                 this.username = who
-                console.log(who)
+      
             } catch (error) {
                 console.log(error)
             }
@@ -100,6 +106,7 @@ export default {
     },
     created() {
         this.getUser()
+    
        
     },
   
@@ -113,9 +120,9 @@ export default {
 
 
 .header{
-    height: 50px;
+    height: 49px;
     widows: 100;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #3BB4F2;
     .container{
         width: 96%;
         margin: 0 auto;
@@ -123,11 +130,19 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .mini_nav{
-            display: none;
-        }
         .logo{
-            width: 50px;
+            width: 120px;
+            height: 100%;
+            line-height: 49px;
+            font-weight: bolder;
+            cursor: pointer;
+            img{
+                width: 120px;
+                height: 40px;
+                vertical-align: center;
+            }
+            // background-image: url("@/assets/images/logo.png") ;
+            // background: chartreuse;
         }
         .left_navbar{
             flex: 1;
@@ -135,7 +150,6 @@ export default {
             height: 100%;
             align-items: center;
             .left_navbar_searchbar{
-           
                 position: relative;
                 margin-left: 2%;
                 .search{
@@ -154,26 +168,42 @@ export default {
                 }
             }
             .left_navbar_content{
-                margin-left:1% ;
+                // margin-left:1% ;
                 ul{
                     display: flex;
                     li {
-                        margin-left: 4%;
+                        // margin-left: 1%;
+                        color: #666666;
                         cursor: pointer;
                         font-weight: 600;
-                        font-family: Consolas,"monospace","Microsoft Yahei";
-                        padding: 8px 2px;
+                        font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+                        padding: 0px 4px;
                         list-style: none;
                         -moz-user-select: none; /*火狐*/
                         -webkit-user-select: none; /*webkit浏览器*/
                         user-select: none;
-                        font-size: 20px;
-                        // width: 0px;
-
+                        font-size: 16px;
+                        width: 70px;
+                        height: 49px;
+                        line-height: 49px;
+                        text-align: center;
+                        &:last-of-type{
+                            width: 90px;   
+                        }
+                        &:hover{
+                            background: #3BB4F2;
+                            color: #fff;
+                        }
+                        i{
+                            font-weight:900;
+                        }
                     }
                     li.active{
-                        color: blue;
-                       
+                        color: #3BB4F2; 
+                        &:hover{
+                            background: #3BB4F2;
+                            color: #fff;
+                        }                      
                     }
                 }
             }
@@ -223,68 +253,5 @@ export default {
     }
 }
 
-@media screen and (max-width: 620px) {
-    .header {
-        background-color:lightblue;
-        position: relative;
-        width: 100vw;
-        .container{
-            width: 100vw;
-            .mini_nav{
-                display: block;
-                cursor: pointer;
-            }
-            .logo{
-                display: none;
-            }
-            .left_navbar{
-                display: block;
-                position: absolute;
-                top: 50px;
-                left: 0;
-                width: 45vw;
-                height: 55vw;
-                background: chocolate;
-                .left_navbar_searchbar{
-                    margin:0 ;
-                    height: 40px;
-                    width: 42vw;
-                    display: flex;
-                    align-items: center;
-                    border-bottom:1px solid ;
-                    padding-left:1% ;
-                    .search{
-                        height: 28px;
-                        width: 40vw;
-                        border: 1px solid rgb(182, 180, 177);
-                        outline: none;
-                        padding: 0 5px;
-                    }
-                }
-                .left_navbar_content{
-                    margin-left:0% ;
-              
-                    ul{
-                        display: block;
-                        margin: 0;
-                        li {
-                            padding-left:2% ;
-                            height: 40px;
-                            line-height: 40px;
-                            margin-left: 0%;
-                            cursor: pointer;
-                            font-weight: 600;
-                            font-family: Consolas,"monospace","Microsoft Yahei";
-                            border-bottom:1px solid ;
-                            width: 42vw;
-                        }
-                        li.active{
-                            color: blue;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+
 </style>

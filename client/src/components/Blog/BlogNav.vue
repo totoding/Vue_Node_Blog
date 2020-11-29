@@ -69,12 +69,10 @@ export default {
     methods: {
         showArticle(id){
             this.active = id
-            // console.log(id)
             this.$store.dispatch("article/getArticleById",id)
         },
-        async getTitleList(){
-            const list =  await articleServ.getArticleList()
-            this.titleList =  list.data.map(ele => {
+        initArticleList(list){
+            this.titleList =  list.map(ele => {
                 ele.time = ele.createdAt.split("T")[0]
                 return {
                     id : ele.id,
@@ -85,14 +83,22 @@ export default {
             })
             this.titleList.reverse()
             this.active = this.titleList[0].id
-            this.$store.dispatch("article/getArticleById",this.active) 
+            this.$store.dispatch("article/getArticleById",this.active)  
+        }
+    },
+    computed: {
+        vuexArticleList(){
+            return this.$store.state.article.changeCount
+        }
+    },
+    watch: {
+        vuexArticleList(val,old){
+           const list = this.$store.state.article.articleList
+           list.length > 0 ?  this.initArticleList(list) : alert("没有啊")     
         }
     },
     created() {
-        
-        this.getTitleList()
-  
-
+        this.$store.dispatch("article/getAllArticleList")
     },
 
 }
