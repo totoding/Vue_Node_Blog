@@ -35,6 +35,7 @@ export default {
     .blog{
         width: 100%;
         height: calc(100% - 51px);
+        background: #4456A7;
         .container{
             width: 96%;
             margin: 0 auto;
@@ -46,11 +47,15 @@ export default {
                 width: 30%;
                 height: 86%;
                 box-sizing: border-box;
+                background: #fff;
+                border-radius:5px ;
             }
             .article_content{
                 width: 65%;
                 height: 86%;
                 margin-left: 5%;
+                background: #fff;
+                border-radius:5px ;
             }
         }
     }

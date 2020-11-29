@@ -142,6 +142,7 @@ export default {
 .comments {
     width: 100%;
     padding-bottom: 50px ;
+    //   background: #4456A7;
     .container {
         width: 80%;
         margin: 0 auto;
