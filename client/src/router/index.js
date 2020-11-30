@@ -40,12 +40,6 @@ const routes = [{
     name: "admin",
     component:() =>import("@/views/admin.vue")
   },
-  {
-    path:"/admin1",
-    name: "admin1",
-    component:() =>import("@/views/admin1.vue")
-  }
-
 ]
 
 const router = new VueRouter({

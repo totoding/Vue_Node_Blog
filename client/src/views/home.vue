@@ -67,7 +67,6 @@ export default {
                     margin-top: 5px;
                 }
             }
-            
         }
         .right_btn{
             width: 220px;

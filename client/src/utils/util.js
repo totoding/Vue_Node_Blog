@@ -8,5 +8,5 @@ const debounce = (func, wait) => {
         func(v);
       }, wait);
     }
-};
+}
 module.exports = debounce

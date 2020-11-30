@@ -3,10 +3,8 @@
     
         <div id="editor" style="">
             <div class="content" v-html="currentArticle">
-            {{currentArticle}}
-        </div>
-
-       
+                {{currentArticle}}
+            </div>
         </div>
     </div>
 </template>
@@ -14,7 +12,6 @@
 <script>
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
-
 export default {
       components: {
         mavonEditor,
@@ -25,24 +22,15 @@ export default {
         }
     },
     methods: {
-            save(val,html){
+        save(val,html){
             this.content = html
-        },
+        }
     },
     computed: {
         currentArticle(){
             return this.$store.state.article.currentArticle
         }
     },
-    watch: {
-        articleId(){
-            // console.log(this.articleId)
-        }
-    },
-    created() {
-        // console.log( this.$store.state.article.currentArticle)
-    },
- 
 }
 </script>
 <style lang="scss" scoped>
@@ -63,12 +51,9 @@ export default {
         height: 100%;
         border: 3px solid #3BB4F2;
         border-radius: 5px;
-        overflow-y: scroll;
-        
-      
+        overflow-y: scroll;  
     }
     .content{
-        padding: 20px;
-        
+        padding: 20px;   
     }
 </style>

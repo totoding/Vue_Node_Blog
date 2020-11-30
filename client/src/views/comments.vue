@@ -53,7 +53,6 @@
 import * as commentsServe from '@/service/commentsServe';
 import Replay from "@/components/Comments/Reply.vue"
 import ReplyInput from "@/components/Comments/Input.vue"
-
 export default {
     components:{
         Replay,
@@ -134,7 +133,6 @@ export default {
     },
     created() {
         this.initComments()
-
     },
 }
 </script>
@@ -142,7 +140,6 @@ export default {
 .comments {
     width: 100%;
     padding-bottom: 50px ;
-    //   background: #4456A7;
     .container {
         width: 80%;
         margin: 0 auto;
@@ -243,7 +240,6 @@ export default {
             }
             .reply_input{
                 width: 90%;
-                // border-left: 2px solid black;
                 margin-left:10% ;
                 box-sizing: border-box;
                 padding: 5px;

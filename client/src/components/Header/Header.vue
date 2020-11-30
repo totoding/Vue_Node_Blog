@@ -8,17 +8,17 @@
                 <div class="left_navbar_content">
                     <ul>
                         <router-link to="/home" tag="li" >  
-                            <i class="el-icon-s-home"></i>
-                        首页</router-link>
+                            <i class="el-icon-s-home"></i>首页
+                        </router-link>
                         <router-link to="/blog" tag="li" >
-                            <i class="el-icon-reading"></i>
-                        博客</router-link>
+                            <i class="el-icon-reading"></i>博客
+                        </router-link>
                         <router-link to="/comments" tag="li" >
-                         <i class="el-icon-edit-outline"></i>
-                        留言</router-link>
+                            <i class="el-icon-edit-outline"></i>留言
+                        </router-link>
                         <router-link to="/about" tag="li" >
-                        <i class="el-icon-user"></i>
-                        关于我</router-link>
+                            <i class="el-icon-user"></i>关于我
+                        </router-link>
                     </ul>
                 </div>
                   <div class="left_navbar_searchbar" v-if="$store.state.search.showSearchBar">
@@ -69,7 +69,6 @@ export default {
             logining : false,
             pathToLogin : false,
             username : "",
-
         }
     },
     methods: {
@@ -98,27 +97,18 @@ export default {
                 const who = this.$store.state.user.data.username
                 this.isLogin = true
                 this.username = who
-      
             } catch (error) {
                 console.log(error)
             }
         }
     },
     created() {
-        this.getUser()
-    
-       
-    },
-  
-       
-    watch: {
+        this.getUser()  
     },
 }
 </script>
 
 <style lang="scss" scoped>
-
-
 .header{
     height: 49px;
     widows: 100;
@@ -141,8 +131,6 @@ export default {
                 height: 40px;
                 vertical-align: center;
             }
-            // background-image: url("@/assets/images/logo.png") ;
-            // background: chartreuse;
         }
         .left_navbar{
             flex: 1;
@@ -168,19 +156,17 @@ export default {
                 }
             }
             .left_navbar_content{
-                // margin-left:1% ;
                 ul{
                     display: flex;
                     li {
-                        // margin-left: 1%;
                         color: #666666;
                         cursor: pointer;
                         font-weight: 600;
                         font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
                         padding: 0px 4px;
                         list-style: none;
-                        -moz-user-select: none; /*火狐*/
-                        -webkit-user-select: none; /*webkit浏览器*/
+                        -moz-user-select: none;
+                        -webkit-user-select: none;
                         user-select: none;
                         font-size: 16px;
                         width: 70px;
@@ -231,7 +217,6 @@ export default {
                     border-radius: 5px ;
                 }
             }
-
         }
     }
     .login_container{
@@ -248,10 +233,7 @@ export default {
         .box{
             width: 380px;
             height: 380px;
-            // background: #fff;
         }
     }
 }
-
-
 </style>

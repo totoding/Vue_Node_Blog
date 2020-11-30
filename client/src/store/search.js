@@ -1,5 +1,3 @@
-// import * as loginServ from "../service/loginService";
-
 export default {
   namespaced: true,
   state: {

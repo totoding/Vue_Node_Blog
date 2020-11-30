@@ -1,8 +1,5 @@
 <template>
     <div class="admin">
-    
-
-
         <div class="title center">
             <input type="text" placeholder="文章标题" v-model="title">
         </div>
@@ -27,7 +24,6 @@
         </div>
 
     </div>
-
 </template>
 <script>
 import { mavonEditor } from "mavon-editor";

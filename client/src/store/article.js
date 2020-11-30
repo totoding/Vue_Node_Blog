@@ -1,19 +1,17 @@
 import * as articleServe from "../service/articleServe";
-
 export default {
   namespaced: true,
   state: {
     activeId : null,
     currentArticle : "",
     ArticleList : [],
-    changeCount : 0
+    changeCount : 0 //用于监听文章数据变化
   },
   mutations: {
     setActiveId(state, payload) {
       state.activeId = payload;
     },
     setArticle(state, payload){
-      
         state.currentArticle = payload
     },
     setArticleList(state, payload){

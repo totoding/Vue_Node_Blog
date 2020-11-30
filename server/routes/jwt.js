@@ -16,20 +16,19 @@ exports.publish = function (res, maxAge = 3600*24, info = {}){
 }
 
 exports.verify = function (req) {
-    let token = req.headers.authorization;
-    console.log(token)
+    let token = req.headers.authorization
     if (!token) {
       //没有token
-      return null;
+      return null
     }
     // authorization: bearer token
-    token = token.split(" ");
-    token = token.length === 1 ? token[0] : token[1];
+    token = token.split(" ")
+    token = token.length === 1 ? token[0] : token[1]
     try {
-      const result = jwt.verify(token, secrect);
-      return result;
+      const result = jwt.verify(token, secrect)
+      return result
     } catch (err) {
-      return null;
+      return null
     }
   };
   

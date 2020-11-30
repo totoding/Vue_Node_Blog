@@ -9,40 +9,18 @@
                     <svg t="1606219235660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5504" width="20" height="20"><path d="M144 768v64H64v-64h80m64-64H0v192h208V704zM416 576v256h-80V576h80m64-64H272v384h208V512zM688 352v480h-80V352h80m64-64H544v608h208V288zM960 192v640h-80V192h80m64-64H816v768h208V128z" p-id="5505"></path></svg>
                 </div>
                <div class="berry">
-               <svg t="1606219361543" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7079" width="20" height="20"><path d="M812.8 767.9v167.8c0 13.3-10.7 24-24 24h-552c-13.3 0-24-10.7-24-24V767.9h600z" fill="#F0FAF5" p-id="7080"></path><path d="M624 94.5l48 71.4c10 15 26.8 23.9 44.8 23.9h66.1v740.7h-540V189.8h64.3c18 0 34.8-8.9 44.8-23.9l48-71.4h224m3.2-30H396.7c-8 0-15.5 4-19.9 10.6l-49.7 74c-4.5 6.6-11.9 10.6-19.9 10.6h-70.3c-13.3 0-24 10.8-24 24v752.7c0 13.3 10.7 24 24 24h552c13.3 0 24-10.8 24-24V183.8c0-13.3-10.7-24-24-24h-72.1c-8 0-15.5-4-19.9-10.6l-49.7-74c-4.6-6.7-12-10.7-20-10.7z" fill="" p-id="7081"></path><path d="M713.8 859.1h-402c-13.3 0-24-10.7-24-24v-54c0-13.3 10.7-24 24-24h402c13.3 0 24 10.7 24 24v54c0 13.3-10.7 24-24 24zM713.8 715.5h-402c-13.3 0-24-10.7-24-24v-54c0-13.3 10.7-24 24-24h402c13.3 0 24 10.7 24 24v54c0 13.2-10.7 24-24 24zM713.8 571.8h-402c-13.3 0-24-10.7-24-24v-54c0-13.3 10.7-24 24-24h402c13.3 0 24 10.7 24 24v54c0 13.2-10.7 24-24 24zM729.4 383.9c-8 0-14.5-6.5-14.5-14.5v-71.1c0-8 6.5-14.5 14.5-14.5s14.5 6.5 14.5 14.5v71.1c-0.1 8-6.5 14.5-14.5 14.5z" fill="#6DE49D" p-id="7082"></path></svg>
+                    <svg t="1606219361543" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7079" width="20" height="20"><path d="M812.8 767.9v167.8c0 13.3-10.7 24-24 24h-552c-13.3 0-24-10.7-24-24V767.9h600z" fill="#F0FAF5" p-id="7080"></path><path d="M624 94.5l48 71.4c10 15 26.8 23.9 44.8 23.9h66.1v740.7h-540V189.8h64.3c18 0 34.8-8.9 44.8-23.9l48-71.4h224m3.2-30H396.7c-8 0-15.5 4-19.9 10.6l-49.7 74c-4.5 6.6-11.9 10.6-19.9 10.6h-70.3c-13.3 0-24 10.8-24 24v752.7c0 13.3 10.7 24 24 24h552c13.3 0 24-10.8 24-24V183.8c0-13.3-10.7-24-24-24h-72.1c-8 0-15.5-4-19.9-10.6l-49.7-74c-4.6-6.7-12-10.7-20-10.7z" fill="" p-id="7081"></path><path d="M713.8 859.1h-402c-13.3 0-24-10.7-24-24v-54c0-13.3 10.7-24 24-24h402c13.3 0 24 10.7 24 24v54c0 13.3-10.7 24-24 24zM713.8 715.5h-402c-13.3 0-24-10.7-24-24v-54c0-13.3 10.7-24 24-24h402c13.3 0 24 10.7 24 24v54c0 13.2-10.7 24-24 24zM713.8 571.8h-402c-13.3 0-24-10.7-24-24v-54c0-13.3 10.7-24 24-24h402c13.3 0 24 10.7 24 24v54c0 13.2-10.7 24-24 24zM729.4 383.9c-8 0-14.5-6.5-14.5-14.5v-71.1c0-8 6.5-14.5 14.5-14.5s14.5 6.5 14.5 14.5v71.1c-0.1 8-6.5 14.5-14.5 14.5z" fill="#6DE49D" p-id="7082"></path></svg>
                </div>
-       
-
-            </div>
-              
-                  
-            
+            </div>  
         </div>
         <div class="blog_nav_list">
             <div class="nav_list_item" v-for="item in titleList" :key="item.id" >
                 <div class="list_item_container" :class="active==item.id?'active':''" @click="showArticle(item.id)">
                     <div class="article_title article_common">@ {{item.title}}</div>
-                    <!-- <div class="article_tags article_common">
-                         <div class="tag_title">
-                             标签:
-                         </div>
-                         <div class="tag_container">
-                             <div class="tag_item" v-for="(ele, index) in item.tags" :key="index">
-                                  {{ele}}
-                             </div>
-                         </div>    
-                    </div> -->
                     <div class="article_time article_common">
                         <div class="left_time">
                               {{item.createdAt}}
                         </div>
-                        <!-- <div class="right_tags">
-                              <div class="tag_container">
-                             <div class="tag_item" v-for="(ele, index) in item.tags" :key="index">
-                                  {{ele}}
-                             </div>
-                         </div>    
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -105,7 +83,6 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-
     ::-webkit-scrollbar {
         display: none;
     }
@@ -117,8 +94,8 @@ export default {
         -moz-appearance: textfield;
     }
     .blog_nav{
-        -moz-user-select: none; /*火狐*/
-        -webkit-user-select: none; /*webkit浏览器*/
+        -moz-user-select: none; 
+        -webkit-user-select: none; 
         user-select: none;
         width: 100%;
         height: 100%;
@@ -162,9 +139,6 @@ export default {
                     &.active{
                         background: #FFD03F;
                     }
-                    &:hover{
-                       
-                    }
                     .article_common{
                         margin: 5px;
                         padding: 0 10px;
@@ -172,7 +146,6 @@ export default {
                         width: 100%;
                     }
                     .article_title{
-                     
                         overflow: hidden;
                         text-overflow: ellipsis;
                         display: -webkit-box;
@@ -187,8 +160,7 @@ export default {
                     }
                     .article_tags{
                         font-size: 14px;
-                        display: flex;
-                       
+                        display: flex;   
                     }
                     .article_time{
                         font-size: 13px;
@@ -245,7 +217,7 @@ export default {
                     border-radius:50% ;
                     text-align: center;
                     font-weight: 600;
-                        margin: 10px;
+                    margin: 10px;
                 }
             }
         }

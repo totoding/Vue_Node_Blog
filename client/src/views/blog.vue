@@ -18,18 +18,13 @@ export default {
         BlogNav,
         BlogContent
     },
-     data(){
-        return {  
-        }
-    },
     created() {
-        this.$store.dispatch("search/change", true)
+        this.$store.dispatch("search/change", true) // 用于控制展示搜索框
     },
     destroyed() {
         this.$store.dispatch("search/change", false)
     },
 }
-
 </script>
 <style lang="scss" scoped>
     .blog{
