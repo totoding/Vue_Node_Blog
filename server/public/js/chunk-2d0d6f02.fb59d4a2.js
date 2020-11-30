@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0d6f02"],{"754b":function(t,n,e){"use strict";e.r(n);var a=function(){var t=this,n=t.$createElement,e=t._self._c||n;return e("div",{staticClass:"about"},[t._v(" 关于施工中 ")])},s=[],c={},u=c,i=e("2877"),l=Object(i["a"])(u,a,s,!1,null,"0d2a9787",null);n["default"]=l.exports}}]);
-//# sourceMappingURL=chunk-2d0d6f02.fb59d4a2.js.map
